@@ -15,7 +15,7 @@ void create(Array *a)
     cout << "Enter the number of elements you want to enter: ";
     cin >> a->length;
 
-    a->arr =(int *)malloc(a->size * sizeof(int));
+    a->arr = (int *)malloc(a->size * sizeof(int));
     // a->arr = new int[a->size];
 
     cout << "\nEnter " << a->length << " elements:\n";
@@ -25,7 +25,7 @@ void create(Array *a)
     }
 }
 /*
-Time complexity: O(n) 
+Time complexity: O(n)
 */
 
 void display(Array a)
@@ -37,7 +37,7 @@ void display(Array a)
     }
 }
 /*
-Time complexity: O(n) 
+Time complexity: O(n)
 */
 
 void append(struct Array *a, int value)
@@ -95,6 +95,22 @@ Best case: O(1) - when the last element is deleted
 Worst case: O(n) - when element present on index 0 is deleted
 */
 
+int linearSearch(Array a, int key)
+{
+    for (int i = 0; i < a.length; i++)
+    {
+        if (a.arr[i] == key)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+/*
+Time complexity:
+Best case: O(1) - element found at first position
+Worst case: O(n) - element found at last index or element not found
+*/
 
 int main(void)
 {
@@ -103,7 +119,9 @@ int main(void)
     display(a);
     // append(&a, 11);
     // insert(&a, 30, 2);
-    deleteElement(&a, 3);
+    // deleteElement(&a, 3);
+    cout << endl
+         << linearSearch(a, 4);
     display(a);
     return 0;
 }
