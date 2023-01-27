@@ -52,13 +52,58 @@ void append(struct Array *a, int value)
 Time complexity: O(1) - always constant
 */
 
+void insert(Array *a, int value, int index)
+{
+    if (a->length < a->size)
+    {
+        if (index >= 0 and index < a->length)
+        {
+            for (int i = a->length; i > index; i--)
+            {
+                a->arr[i] = a->arr[i - 1];
+            }
+            a->arr[index] = value;
+            a->length++;
+        }
+    }
+}
+/*
+Time complexity:
+Best case: O(1) - when element is inserted at the last
+Worst case: O(n) - when element is inserted at index 0
+*/
+
+int deleteElement(Array *a, int index)
+{
+    if (index >= 0 && index < a->length)
+    {
+        int x;
+        x = a->arr[index];
+
+        for (int i = index; i < (a->length - 1); i++)
+        {
+            a->arr[i] = a->arr[i + 1];
+        }
+        a->length--;
+        return x;
+    }
+    return -1;
+}
+/*
+Time complexity:
+Best case: O(1) - when the last element is deleted
+Worst case: O(n) - when element present on index 0 is deleted
+*/
+
 
 int main(void)
 {
     Array a;
     create(&a);
     display(a);
-    append(&a, 11);
+    // append(&a, 11);
+    // insert(&a, 30, 2);
+    deleteElement(&a, 3);
     display(a);
     return 0;
 }
