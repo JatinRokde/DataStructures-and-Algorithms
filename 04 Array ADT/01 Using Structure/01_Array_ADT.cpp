@@ -40,11 +40,25 @@ void display(Array a)
 Time complexity: O(n) 
 */
 
+void append(struct Array *a, int value)
+{
+    if (a->length < a->size)
+    {
+        a->arr[a->length] = value;
+        a->length++;
+    }
+}
+/*
+Time complexity: O(1) - always constant
+*/
+
 
 int main(void)
 {
     Array a;
     create(&a);
+    display(a);
+    append(&a, 11);
     display(a);
     return 0;
 }
