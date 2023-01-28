@@ -200,6 +200,29 @@ Best case: O(1) - Key is found in the mid of the array
 Worst case: O(n)
 */
 
+int getElement(struct Array a, int index)
+{
+    if (index >= 0 && index < a.length)
+    {
+        return a.arr[index];
+    }
+    return -1;
+}
+/*
+Time complexity: O(1) - always constant
+*/
+
+void setElement(struct Array *a, int index, int value)
+{
+    if (index >= 0 && index < a->length)
+    {
+        a->arr[index] = value;
+    }
+}
+/*
+Time complexity: O(1) - always constant time
+*/
+
 int main(void)
 {
     Array a;
@@ -214,8 +237,12 @@ int main(void)
     //      << moveHeadLinearSearch(&a, 4);
     // cout << endl
     //      << iterativeBinarySearch(a, 4);
-    cout << endl
-         << recursiveBinarySearch(a, 0, a.length - 1, 3);
+    // cout << endl
+    //      << recursiveBinarySearch(a, 0, a.length - 1, 3);
+    // cout << endl
+    //      << getElement(a, 2);
+    // setElement(&a, 2, 55);
+
     display(a);
     return 0;
 }
