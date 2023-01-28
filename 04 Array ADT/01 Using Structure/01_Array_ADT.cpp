@@ -154,6 +154,52 @@ int moveHeadLinearSearch(Array *a, int key)
     return -1;
 }
 
+int iterativeBinarySearch(Array a, int key)
+{
+    int low, high, mid;
+    low = 0;
+    high = a.length - 1;
+
+    while (low <= high)
+    {
+        mid = (low + high) / 2;
+
+        if (a.arr[mid] == key)
+            return mid;
+        else if (a.arr[mid] > key)
+            high = mid - 1;
+        else
+            low = mid + 1;
+    }
+    return -1;
+}
+/*
+Time complexity:
+Best case: O(1) - key is found at the mid of the array
+Worst case: O(log n)
+*/
+
+int recursiveBinarySearch(Array a, int low, int high, int key)
+{
+    if (low <= high)
+    {
+        int mid = (low + high) / 2;
+
+        if (a.arr[mid] == key)
+            return mid;
+        else if (a.arr[mid] > key)
+            return recursiveBinarySearch(a, low, mid - 1, key);
+        else
+            return recursiveBinarySearch(a, mid + 1, high, key);
+    }
+    return -1;
+}
+/*
+Time complexity:
+Best case: O(1) - Key is found in the mid of the array
+Worst case: O(n)
+*/
+
 int main(void)
 {
     Array a;
@@ -164,8 +210,12 @@ int main(void)
     // deleteElement(&a, 3);
     // cout << endl
     //      << linearSearch(a, 4);
+    // cout << endl
+    //      << moveHeadLinearSearch(&a, 4);
+    // cout << endl
+    //      << iterativeBinarySearch(a, 4);
     cout << endl
-         << moveHeadLinearSearch(&a, 4);
+         << recursiveBinarySearch(a, 0, a.length - 1, 3);
     display(a);
     return 0;
 }
