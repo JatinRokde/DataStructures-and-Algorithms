@@ -255,6 +255,33 @@ int minElement(struct Array a)
 Time complexity: O(n)
 */
 
+int sumElement(struct Array a)
+{
+    int sum = 0;
+    for (int i = 0; i < a.length; i++)
+    {
+        sum += a.arr[i];
+    }
+    return sum;
+}
+/*
+Time complexity: O(n)
+*/
+
+float averageElement(struct Array a)
+{
+    int sum = 0;
+    float average;
+    for (int i = 0; i < a.length; i++)
+    {
+        sum += a.arr[i];
+    }
+    average = (float)sum / a.length;
+    return average;
+}
+/*
+Time complexity: O(n)
+*/
 
 int main(void)
 {
@@ -276,6 +303,8 @@ int main(void)
     //      << getElement(a, 2);
     // setElement(&a, 2, 55);
     // cout << endl << minElement(a);
+    // cout << endl << sumElement(a);
+    // cout << endl << averageElement(a);
 
     display(a);
     return 0;
