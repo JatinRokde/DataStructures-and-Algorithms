@@ -223,6 +223,39 @@ void setElement(struct Array *a, int index, int value)
 Time complexity: O(1) - always constant time
 */
 
+int maxElement(struct Array a)
+{
+    int max = a.arr[0];
+    for (int i = 0; i < a.length; i++)
+    {
+        if (a.arr[i] > max)
+        {
+            max = a.arr[i];
+        }
+    }
+    return max;
+}
+/*
+Time complexity: O(n)
+*/
+
+int minElement(struct Array a)
+{
+    int min = a.arr[0];
+    for (int i = 0; i < a.length; i++)
+    {
+        if (a.arr[i] < min)
+        {
+            min = a.arr[i];
+        }
+    }
+    return min;
+}
+/*
+Time complexity: O(n)
+*/
+
+
 int main(void)
 {
     Array a;
@@ -242,6 +275,7 @@ int main(void)
     // cout << endl
     //      << getElement(a, 2);
     // setElement(&a, 2, 55);
+    // cout << endl << minElement(a);
 
     display(a);
     return 0;
