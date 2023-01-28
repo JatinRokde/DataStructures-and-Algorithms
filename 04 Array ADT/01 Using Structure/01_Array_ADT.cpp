@@ -112,6 +112,48 @@ Best case: O(1) - element found at first position
 Worst case: O(n) - element found at last index or element not found
 */
 
+/*
+Improvising Linear Search
+i) Transposition - we swap the key element with its previous element; doing so it takes (n-1) comparisons in the next same element search.
+ii) Moce to Head - In this, we swap the key element with the first element; doing so, upon next search it takes constant time.
+*/
+
+void swap(int *a, int *b)
+{
+    int temp;
+    temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+// Transposition
+int transpositionLinearSearch(Array *a, int key)
+{
+    for (int i = 0; i < a->length; i++)
+    {
+        if (a->arr[i] == key)
+        {
+            swap(&a->arr[i], &a->arr[i - 1]);
+            return i;
+        }
+    }
+    return -1;
+}
+
+// Move to Head
+int moveHeadLinearSearch(Array *a, int key)
+{
+    for (int i = 0; i < a->length; i++)
+    {
+        if (a->arr[i] == key)
+        {
+            swap(&a->arr[i], &a->arr[0]);
+            return i;
+        }
+    }
+    return -1;
+}
+
 int main(void)
 {
     Array a;
@@ -120,8 +162,10 @@ int main(void)
     // append(&a, 11);
     // insert(&a, 30, 2);
     // deleteElement(&a, 3);
+    // cout << endl
+    //      << linearSearch(a, 4);
     cout << endl
-         << linearSearch(a, 4);
+         << moveHeadLinearSearch(&a, 4);
     display(a);
     return 0;
 }
