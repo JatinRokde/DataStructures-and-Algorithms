@@ -388,6 +388,40 @@ void rightRotate(struct Array a)
 Time complexity: O(n)
 */
 
+void sortedElementInsert(Array *a, int element)
+{
+    if (a->length < a->size)
+    {
+        int i;
+        for (i = a->length - 1; i >= 0 && a->arr[i] > element; i--)
+        {
+            a->arr[i + 1] = a->arr[i];
+        }
+        a->arr[i + 1] = element;
+        a->length++;
+    }
+}
+/*
+Time complexity:
+Best case: O(1) - Element is largest
+Worst case: O(n) - Element is smallest
+*/
+
+bool isSorted(Array a)
+{
+    for (int i = 0; i < (a.length - 1); i++)
+    {
+        if (a.arr[i] > a.arr[i + 1])
+        {
+            return false;
+        }
+    }
+    return true;
+}
+/*
+Time complexity: O(n)
+*/
+
 int main(void)
 {
     Array a;
@@ -423,10 +457,14 @@ int main(void)
 
     // cout << endl;
     // leftRotate(a);
-    cout << endl;
-    rightRotate(a);
+    // cout << endl;
+    // rightRotate(a);
 
-    // display(a);
+    // cout << endl << isSorted(a);
+
+    sortedElementInsert(&a, 6);
+
+    display(a);
 
     return 0;
 }
