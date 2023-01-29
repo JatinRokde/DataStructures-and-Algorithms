@@ -422,6 +422,34 @@ bool isSorted(Array a)
 Time complexity: O(n)
 */
 
+// Rearranges negatives to the left and positives to the right
+void rearrange(Array *a)
+{
+    int i = 0, j = a->length - 1;
+
+    while (i < j)
+    {
+        while (a->arr[i] < 0)
+        {
+            i++;
+        }
+
+        while (a->arr[j] >= 0)
+        {
+            j--;
+        }
+
+        if (i < j)
+        {
+            swap(&a->arr[i], &a->arr[j]);
+        }
+    }
+}
+/*
+Time complexity: O(n)
+Comparison = n + 2
+*/
+
 int main(void)
 {
     Array a;
@@ -462,7 +490,9 @@ int main(void)
 
     // cout << endl << isSorted(a);
 
-    sortedElementInsert(&a, 6);
+    // sortedElementInsert(&a, 6);
+
+    rearrange(&a);
 
     display(a);
 
