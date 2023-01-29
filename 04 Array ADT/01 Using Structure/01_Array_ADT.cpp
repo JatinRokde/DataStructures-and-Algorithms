@@ -497,7 +497,58 @@ struct Array *merge(struct Array a, struct Array b)
 Time complexity: theta(m + n) - Linear
 */
 
+struct Array *SetUnion(struct Array a, struct Array b)
+{
+    int i, j, k;
+    i = j = k = 0;
 
+    struct Array *c = new Array;
+
+    while ((i < a.length) && (j < b.length))
+    {
+        if (a.arr[i] < b.arr[j])
+        {
+            c->arr[k] = a.arr[i];
+            i++;
+            k++;
+        }
+        else if (a.arr[i] > b.arr[j])
+        {
+            c->arr[k] = b.arr[j];
+            j++;
+            k++;
+        }
+        else
+        {
+            c->arr[k] = a.arr[i];
+            i++;
+            k++;
+            j++;
+        }
+    }
+
+    while (i < a.length)
+    {
+        c->arr[k] = a.arr[i];
+        i++;
+        k++;
+    }
+
+    while (j < b.length)
+    {
+        c->arr[k] = b.arr[j];
+        j++;
+        k++;
+    }
+
+    c->length = k;
+    c->size = a.size + b.size;
+
+    return c;
+}
+/*
+Time complexity: theta(m + n) - Linear
+*/
 
 int main(void)
 {
