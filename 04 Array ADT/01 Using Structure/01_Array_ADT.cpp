@@ -550,6 +550,41 @@ struct Array *SetUnion(struct Array a, struct Array b)
 Time complexity: theta(m + n) - Linear
 */
 
+struct Array *SetIntersection(struct Array a, struct Array b)
+{
+    int i, j, k;
+    i = j = k = 0;
+
+    struct Array *c = (struct Array *)malloc(sizeof(struct Array));
+
+    while ((i < a.length) && (j < b.length))
+    {
+        if (a.arr[i] < b.arr[j])
+        {
+            i++;
+        }
+        else if (a.arr[i] > b.arr[j])
+        {
+            j++;
+        }
+        else if (a.arr[i] == b.arr[j])
+        {
+            c->arr[k] = a.arr[i];
+            i++;
+            j++;
+            k++;
+        }
+    }
+
+    c->length = k;
+    c->size = a.size + b.size;
+
+    return c;
+}
+/*
+Time complexity: theta(m + n) - Linear
+*/
+
 int main(void)
 {
     Array a;
