@@ -585,6 +585,45 @@ struct Array *SetIntersection(struct Array a, struct Array b)
 Time complexity: theta(m + n) - Linear
 */
 
+struct Array *SetDifference(struct Array a, struct Array b)
+{
+    int i, j, k;
+    i = j = k = 0;
+
+    struct Array *c = (struct Array *)malloc(sizeof(struct Array));
+
+    while (i < a.length && j < b.length)
+    {
+        if (a.arr[i] < b.arr[j])
+        {
+            c->arr[k] = a.arr[i];
+            i++;
+            k++;
+        }
+        else if (b.arr[j] < a.arr[i])
+        {
+            j++;
+        }
+        else
+        {
+            i++;
+            j++;
+        }
+    }
+
+    for (; i < a.length; i++)
+    {
+        c->arr[k] = a.arr[i];
+        k++;
+    }
+    c->length = k;
+    c->size = a.size + b.size;
+    return c;
+}
+/*
+Time complexity: theta(m + n) - Linear
+*/
+
 int main(void)
 {
     Array a;
