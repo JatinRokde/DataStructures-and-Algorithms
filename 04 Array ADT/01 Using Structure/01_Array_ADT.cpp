@@ -318,6 +318,39 @@ void arrayReverse2(struct Array *a)
 Time complexity: O(n)
 */
 
+void leftShift(struct Array a)
+{
+    for (int i = 0; i < a.length - 1; i++)
+    {
+        a.arr[i] = a.arr[i + 1];
+    }
+    a.arr[a.length - 1] = 0;
+
+    for (int i = 0; i < a.length; i++)
+    {
+        cout << a.arr[i] << " ";
+    }
+}
+/*
+Time complexity: O(n)
+*/
+
+void rightShift(struct Array a)
+{
+    for (int i = a.length - 1; i > 0; i--)
+    {
+        a.arr[i] = a.arr[i - 1];
+    }
+    a.arr[0] = 0;
+
+    for (int i = 0; i < a.length; i++)
+    {
+        cout << a.arr[i] << " ";
+    }
+}
+/*
+Time complexity: O(n)
+*/
 
 int main(void)
 {
@@ -345,8 +378,14 @@ int main(void)
     // int *revarr = arrayReverse1(a);
     // displayReversedArray(revarr, a.length);
 
-    arrayReverse2(&a);
-    display(a);
-    
+    // arrayReverse2(&a);
+
+    // cout << endl;
+    // leftShift(a);
+    cout << endl;
+    rightShift(a);
+
+    // display(a);
+
     return 0;
 }
