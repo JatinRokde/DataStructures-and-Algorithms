@@ -450,7 +450,7 @@ Time complexity: O(n)
 Comparison = n + 2
 */
 
-struct Array *Merge(struct Array a, struct Array b)
+struct Array *merge(struct Array a, struct Array b)
 {
     int i, j, k;
     i = j = k = 0;
@@ -497,11 +497,17 @@ struct Array *Merge(struct Array a, struct Array b)
 Time complexity: theta(m + n) - Linear
 */
 
+
+
 int main(void)
 {
     Array a;
+    Array b;
+    Array *c;
     create(&a);
+    create(&b);
     display(a);
+    display(b);
     // append(&a, 11);
     // insert(&a, 30, 2);
     // deleteElement(&a, 3);
@@ -539,9 +545,11 @@ int main(void)
 
     // sortedElementInsert(&a, 6);
 
-    rearrange(&a);
+    // rearrange(&a);
 
-    display(a);
+    c = merge(a, b);
+
+    display(*c);
 
     return 0;
 }
