@@ -450,6 +450,53 @@ Time complexity: O(n)
 Comparison = n + 2
 */
 
+struct Array *Merge(struct Array a, struct Array b)
+{
+    int i, j, k;
+    i = j = k = 0;
+
+    struct Array *c = (struct Array *)malloc(sizeof(struct Array));
+    // struct Array *c = new struct Array;
+
+    while ((i < a.length) && (j < b.length))
+    {
+        if (a.arr[i] < b.arr[j])
+        {
+            c->arr[k] = a.arr[i];
+            i++;
+            k++;
+        }
+        else
+        {
+            c->arr[k] = b.arr[j];
+            j++;
+            k++;
+        }
+    }
+
+    while (i < a.length)
+    {
+        c->arr[k] = a.arr[i];
+        i++;
+        k++;
+    }
+
+    while (j < b.length)
+    {
+        c->arr[k] = b.arr[j];
+        j++;
+        k++;
+    }
+
+    c->length = a.length + b.length;
+    c->size = a.size + b.size;
+
+    return c;
+}
+/*
+Time complexity: theta(m + n) - Linear
+*/
+
 int main(void)
 {
     Array a;
