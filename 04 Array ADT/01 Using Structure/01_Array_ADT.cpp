@@ -283,6 +283,42 @@ float averageElement(struct Array a)
 Time complexity: O(n)
 */
 
+int *arrayReverse1(Array a)
+{
+    int *B;
+    B = new int[a.length];
+
+    for (int i = a.length - 1, j = 0; i >= 0; i--, j++)
+    {
+        B[j] = a.arr[i];
+    }
+    return B;
+}
+/*
+Time complexity: O(n)
+*/
+
+void displayReversedArray(int *a, int n)
+{
+    cout << "\n\nThe Reversed array is:\n";
+    for (int i = 0; i < n; i++)
+    {
+        cout << a[i] << " ";
+    }
+}
+
+void arrayReverse2(struct Array *a)
+{
+    for (int i = 0, j = a->length - 1; i < j; i++, j--)
+    {
+        swap(&a->arr[i], &a->arr[j]);
+    }
+}
+/*
+Time complexity: O(n)
+*/
+
+
 int main(void)
 {
     Array a;
@@ -306,6 +342,11 @@ int main(void)
     // cout << endl << sumElement(a);
     // cout << endl << averageElement(a);
 
+    // int *revarr = arrayReverse1(a);
+    // displayReversedArray(revarr, a.length);
+
+    arrayReverse2(&a);
     display(a);
+    
     return 0;
 }
