@@ -352,6 +352,42 @@ void rightShift(struct Array a)
 Time complexity: O(n)
 */
 
+void leftRotate(struct Array a)
+{
+    int temp = a.arr[0];
+    for (int i = 0; i < a.length - 1; i++)
+    {
+        a.arr[i] = a.arr[i + 1];
+    }
+    a.arr[a.length - 1] = temp;
+
+    for (int i = 0; i < a.length; i++)
+    {
+        cout << a.arr[i] << " ";
+    }
+}
+/*
+Time complexity: O(n)
+*/
+
+void rightRotate(struct Array a)
+{
+    int temp = a.arr[a.length - 1];
+    for (int i = a.length - 1; i > 0; i--)
+    {
+        a.arr[i] = a.arr[i - 1];
+    }
+    a.arr[0] = temp;
+
+    for (int i = 0; i < a.length; i++)
+    {
+        cout << a.arr[i] << " ";
+    }
+}
+/*
+Time complexity: O(n)
+*/
+
 int main(void)
 {
     Array a;
@@ -382,8 +418,13 @@ int main(void)
 
     // cout << endl;
     // leftShift(a);
+    // cout << endl;
+    // rightShift(a);
+
+    // cout << endl;
+    // leftRotate(a);
     cout << endl;
-    rightShift(a);
+    rightRotate(a);
 
     // display(a);
 
