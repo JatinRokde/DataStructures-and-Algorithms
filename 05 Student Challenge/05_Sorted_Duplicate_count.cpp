@@ -1,7 +1,6 @@
 #include <iostream>
 using namespace std;
 
-// Prints duplicates in a Sorted Array
 int main(void)
 {
     int size;
@@ -9,20 +8,25 @@ int main(void)
     cin >> size;
 
     int A[size];
-    cout << "\nEnter Elements:\n";
+    cout << "\nEnter elements:\n";
     for (int i = 0; i < size; i++)
     {
         cin >> A[i];
     }
 
-    int LastDuplicate = 0;
     for (int i = 0; i < size; i++)
     {
-        if ((A[i] == A[i + 1]) && (A[i] != LastDuplicate))
+        if (A[i] == A[i + 1])
         {
-            LastDuplicate = A[i];
-            cout << A[i] << " ";
+            int j = i + 1;
+            while (A[j] == A[i])
+            {
+                j++;
+            }
+            cout << A[i] << " is appearing " << (j - i) << " times\n";
+            i = j - 1;
         }
     }
+
     return 0;
 }
