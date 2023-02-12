@@ -99,6 +99,46 @@ void insertAnywhere(Node **head_ref, int index, int value)
     current->next = new_node;
 }
 
+int sumElements(Node *head_ref)
+{
+    Node *current = head_ref;
+    int sum = 0;
+
+    while (current)
+    {
+        sum += current->data;
+        current = current->next;
+    }
+    return sum;
+}
+
+int maxElement(Node *head_ref)
+{
+    Node *current = head_ref;
+    int max = INT_MIN;
+    while (current)
+    {
+        if (current->data > max)
+            max = current->data;
+        current = current->next;
+    }
+    return max;
+}
+
+int minElement(Node *head_ref)
+{
+    Node *current = head_ref;
+    int min = INT_MAX;
+    
+    while (current)
+    {
+        if (current->data < min)
+            min = current->data;
+        current = current->next;
+    }
+    return min;
+}
+
 void freeList(Node **head_ref)
 {
     Node *current = *head_ref;
@@ -131,7 +171,14 @@ int main(void)
 
     // cout << countNodes(head);
     insertAnywhere(&head, 2, 12);
+
+    
+
     recursiveDisplay(head);
+    cout << endl;
+    // cout << sumElements(head);
+    // cout << maxElement(head);
+    cout << minElement(head);
     freeList(&head);
     return 0;
 }
