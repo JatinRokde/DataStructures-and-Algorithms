@@ -139,6 +139,27 @@ int minElement(Node *head_ref)
     return min;
 }
 
+Node *search(Node *head_ref, int key)
+{
+    Node *current = head_ref;
+    while (current)
+    {
+        if (key == current->data)
+            return current;
+        current = current->next;
+    }
+    return nullptr;
+}
+
+Node *recursiveSearch(Node *node, int key)
+{
+    if (node == nullptr)
+        return nullptr;
+    if (key == node->data)
+        return node;
+    return recursiveSearch(node->next, key);
+}
+
 void freeList(Node **head_ref)
 {
     Node *current = *head_ref;
@@ -178,7 +199,11 @@ int main(void)
     cout << endl;
     // cout << sumElements(head);
     // cout << maxElement(head);
-    cout << minElement(head);
+    // cout << minElement(head);
+
+    // Node *result = search(head, 22);
+    Node *result = recursiveSearch(head, 11);
+    cout << result->data;
     freeList(&head);
     return 0;
 }
