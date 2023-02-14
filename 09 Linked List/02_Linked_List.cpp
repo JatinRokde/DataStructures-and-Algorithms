@@ -160,6 +160,27 @@ Node *recursiveSearch(Node *node, int key)
     return recursiveSearch(node->next, key);
 }
 
+// Improvising Linear Search - Move to Head
+Node *improvisedLinearSearch(Node **head_ref, int key)
+{
+    Node *current = *head_ref;
+    Node *follow = nullptr;
+
+    while (current)
+    {
+        if (key == current->data)
+        {
+            follow->next = current->next;
+            current->next = (*head_ref);
+            (*head_ref) = current;
+            return current;
+        }
+        follow = current;
+        current = current->next;
+    }
+    return nullptr;
+}
+
 void freeList(Node **head_ref)
 {
     Node *current = *head_ref;
@@ -202,8 +223,12 @@ int main(void)
     // cout << minElement(head);
 
     // Node *result = search(head, 22);
-    Node *result = recursiveSearch(head, 11);
+    // Node *result = recursiveSearch(head, 11);
+    Node *result = improvisedLinearSearch(&head, 12);
+
     cout << result->data;
+    cout << endl;
+    display(head);
     freeList(&head);
     return 0;
 }
