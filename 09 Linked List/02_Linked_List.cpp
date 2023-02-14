@@ -129,7 +129,7 @@ int minElement(Node *head_ref)
 {
     Node *current = head_ref;
     int min = INT_MAX;
-    
+
     while (current)
     {
         if (current->data < min)
@@ -215,6 +215,58 @@ bool isSorted(Node *node)
     return true;
 }
 
+int deleteHead(Node **head_ref)
+{
+    Node *temp = *head_ref;
+    int x = -1;
+    if (*head_ref == nullptr)
+        return x;
+    x = temp->data;
+    (*head_ref) = (*head_ref)->next;
+    delete temp;
+    return x;
+}
+
+int deleteEnd(Node **head_ref)
+{
+    Node *current = *head_ref;
+    Node *temp = nullptr;
+    int x = -1;
+
+    if (*head_ref == nullptr)
+        return x;
+
+    while (current->next)
+    {
+        temp = current;
+        current = current->next;
+    }
+    temp->next = nullptr;
+    x = current->data;
+    delete current;
+    return x;
+}
+
+int deleteAnywhere(Node **head_ref, int index)
+{
+    Node *current = *head_ref;
+    Node *temp = nullptr;
+    int x = -1;
+
+    if (index < 1 or index > (countNodes(*head_ref) + 1))
+        return x;
+
+    for (int i = 0; i < (index - 1); i++)
+    {
+        temp = current;
+        current = current->next;
+    } 
+    x = current->data;
+    temp->next = current->next;
+    delete current;
+    return x;
+}
+
 void freeList(Node **head_ref)
 {
     Node *current = *head_ref;
@@ -248,8 +300,6 @@ int main(void)
     // cout << countNodes(head);
     insertAnywhere(&head, 2, 4);
 
-    
-
     recursiveDisplay(head);
     cout << endl;
     // cout << sumElements(head);
@@ -261,9 +311,13 @@ int main(void)
     // Node *result = improvisedLinearSearch(&head, 12);
 
     // sortedInsert(&head, 6);
+
+    // deleteHead(&head);
+    // deleteEnd(&head);
+    deleteAnywhere(&head, 2);
     display(head);
-    cout << endl;
-    cout << isSorted(head);
+    // cout << endl;
+    // cout << isSorted(head);
     freeList(&head);
     return 0;
 }
