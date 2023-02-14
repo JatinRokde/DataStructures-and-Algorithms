@@ -181,6 +181,40 @@ Node *improvisedLinearSearch(Node **head_ref, int key)
     return nullptr;
 }
 
+void sortedInsert(Node **head_ref, int value)
+{
+    Node *current = (*head_ref);
+    Node *follow = nullptr;
+    Node *new_node = new Node(value);
+
+    if (current == nullptr)
+    {
+        (*head_ref) = new_node;
+        return;
+    }
+    while (current and current->data < value)
+    {
+        follow = current;
+        current = current->next;
+    }
+
+    new_node->next = follow->next;
+    follow->next = new_node;
+}
+
+bool isSorted(Node *node)
+{
+    int x = INT_MIN;
+    while (node)
+    {
+        if (node->data < x)
+            return false;
+        x = node->data;
+        node = node->next;
+    }
+    return true;
+}
+
 void freeList(Node **head_ref)
 {
     Node *current = *head_ref;
@@ -197,22 +231,22 @@ void freeList(Node **head_ref)
 
 int main(void)
 {
-    Node *new_node = new Node(10);
+    Node *new_node = new Node(5);
     Node *head = new_node;
 
-    insertAtEnd(&head, 3);
-    insertAtEnd(&head, 7);
+    insertAtEnd(&head, 8);
+    insertAtEnd(&head, 12);
 
     display(head);
     cout << endl;
 
-    insertAtHead(&head, 11);
+    insertAtHead(&head, 3);
     display(head);
 
     cout << endl;
 
     // cout << countNodes(head);
-    insertAnywhere(&head, 2, 12);
+    insertAnywhere(&head, 2, 4);
 
     
 
@@ -224,11 +258,12 @@ int main(void)
 
     // Node *result = search(head, 22);
     // Node *result = recursiveSearch(head, 11);
-    Node *result = improvisedLinearSearch(&head, 12);
+    // Node *result = improvisedLinearSearch(&head, 12);
 
-    cout << result->data;
-    cout << endl;
+    // sortedInsert(&head, 6);
     display(head);
+    cout << endl;
+    cout << isSorted(head);
     freeList(&head);
     return 0;
 }
