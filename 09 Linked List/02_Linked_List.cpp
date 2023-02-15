@@ -260,11 +260,35 @@ int deleteAnywhere(Node **head_ref, int index)
     {
         temp = current;
         current = current->next;
-    } 
+    }
     x = current->data;
     temp->next = current->next;
     delete current;
     return x;
+}
+
+// Removing Duplicates in a Sorted Linked List
+void removeDuplicates(Node **head_ref)
+{
+    Node *current = *head_ref;
+    Node *follow = current;
+
+    current = current->next;
+
+    while (current)
+    {
+        if (current->data != follow->data)
+        {
+            follow = current;
+            current = current->next;
+        }
+        else
+        {
+            follow->next = current->next;
+            delete current;
+            current = follow->next;
+        }
+    }
 }
 
 void freeList(Node **head_ref)
@@ -299,6 +323,9 @@ int main(void)
 
     // cout << countNodes(head);
     insertAnywhere(&head, 2, 4);
+    insertAnywhere(&head, 5, 8);
+    insertAtEnd(&head, 12);
+    insertAtEnd(&head, 14);
 
     recursiveDisplay(head);
     cout << endl;
@@ -314,7 +341,8 @@ int main(void)
 
     // deleteHead(&head);
     // deleteEnd(&head);
-    deleteAnywhere(&head, 2);
+    // deleteAnywhere(&head, 2);
+    removeDuplicates(&head);
     display(head);
     // cout << endl;
     // cout << isSorted(head);
