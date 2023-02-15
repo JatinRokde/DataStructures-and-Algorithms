@@ -291,6 +291,46 @@ void removeDuplicates(Node **head_ref)
     }
 }
 
+// Reversing a Linked List
+// 1. Using an auxillary array
+void reverse(Node **head_ref)
+{
+    Node *current = (*head_ref);
+    int *A = new int[countNodes(*head_ref)];
+
+    int i = 0;
+    while (current)
+    {
+        A[i] = current->data;
+        current = current->next;
+        i++;
+    }
+    current = (*head_ref);
+    i--;
+    while (current)
+    {
+        current->data = A[i];
+        current = current->next;
+        i--;
+    }
+}
+
+// 2. Sliding Pointer
+void slidingPointerReverse(Node **head_ref)
+{
+    Node *current = (*head_ref);
+    Node *follow1 = nullptr, *follow2 = nullptr;
+
+    while (current)
+    {
+        follow2 = follow1;
+        follow1 = current;
+        current = current->next;
+        follow1->next = follow2;
+    }
+    (*head_ref) = follow1;
+}
+
 void freeList(Node **head_ref)
 {
     Node *current = *head_ref;
@@ -323,8 +363,8 @@ int main(void)
 
     // cout << countNodes(head);
     insertAnywhere(&head, 2, 4);
-    insertAnywhere(&head, 5, 8);
-    insertAtEnd(&head, 12);
+    // insertAnywhere(&head, 5, 8);
+    // insertAtEnd(&head, 12);
     insertAtEnd(&head, 14);
 
     recursiveDisplay(head);
@@ -342,7 +382,9 @@ int main(void)
     // deleteHead(&head);
     // deleteEnd(&head);
     // deleteAnywhere(&head, 2);
-    removeDuplicates(&head);
+    // removeDuplicates(&head);
+    // reverse(&head);
+    slidingPointerReverse(&head);
     display(head);
     // cout << endl;
     // cout << isSorted(head);
