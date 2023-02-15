@@ -331,6 +331,28 @@ void slidingPointerReverse(Node **head_ref)
     (*head_ref) = follow1;
 }
 
+bool isLoop(Node *head_ref)
+{
+    Node *fastPointer = (head_ref);
+    Node *slowPointer = (head_ref);
+
+    do
+    {
+        slowPointer = slowPointer->next;
+        fastPointer = fastPointer->next;
+        fastPointer = fastPointer?fastPointer->next : fastPointer;
+    } while (fastPointer and slowPointer and fastPointer != slowPointer);
+
+    if (fastPointer == slowPointer)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 void freeList(Node **head_ref)
 {
     Node *current = *head_ref;
@@ -384,8 +406,9 @@ int main(void)
     // deleteAnywhere(&head, 2);
     // removeDuplicates(&head);
     // reverse(&head);
-    slidingPointerReverse(&head);
-    display(head);
+    // slidingPointerReverse(&head);
+    cout << isLoop(head);
+    // display(head);
     // cout << endl;
     // cout << isSorted(head);
     freeList(&head);
