@@ -45,7 +45,7 @@ void display(Node *top)
     Node *current = top;
     while (current)
     {
-        cout << current->data;
+        cout << current->data << " ";
         current = current->next;
     }
 }
@@ -53,5 +53,12 @@ void display(Node *top)
 int main(void)
 {
     Node *top = NULL;
+    push(&top, 25);
+    push(&top, 11);
+    push(&top, 17);
+    display(top);
+    pop(&top);
+    cout << endl;
+    display(top);
     return 0;
 }
