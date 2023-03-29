@@ -80,6 +80,38 @@ void insertAtEnd(Node **head_ref, int value)
     new_node->prev = current;
 }
 
+void insertAnywhere(Node **head_ref, int index, int value)
+{
+    Node *new_node = new Node(value);
+    Node *current = *head_ref;
+
+    int count = countNodes(*head_ref);
+
+    if (index < 1 or index > (count + 1))
+        return;
+
+    if (index == 1)
+    {
+        insertAtHead(head_ref, value);
+        return;
+    }
+
+    if (index == (count + 1))
+    {
+        insertAtEnd(head_ref, value);
+        return;
+    }
+
+    for (int i = 1; i < (index - 1); i++)
+    {
+        current = current->next;
+    }
+    new_node->next = current->next;
+    current->next = new_node;
+    new_node->next->prev = new_node;
+    new_node->prev = current;
+}
+
 int main(void)
 {
     Node *new_node = new Node(8);
@@ -92,6 +124,22 @@ int main(void)
     recursiveDisplay(head);
 
     insertAtEnd(&head, 12);
+    cout << endl;
+    display(head);
+
+    insertAnywhere(&head, 2, 34);
+    cout << endl;
+    display(head);
+
+    insertAnywhere(&head, 1, 10);
+    cout << endl;
+    display(head);
+
+    insertAnywhere(&head, 6, 11);
+    cout << endl;
+    display(head);
+
+    insertAnywhere(&head, 5, 45);
     cout << endl;
     display(head);
     return 0;
