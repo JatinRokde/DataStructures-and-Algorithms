@@ -112,6 +112,19 @@ void insertAnywhere(Node **head_ref, int index, int value)
     new_node->prev = current;
 }
 
+int deleteHead(Node **head_ref)
+{
+    Node *temp = *head_ref;
+    int x = -1;
+    if (*head_ref == nullptr)
+        return x;
+    x = temp->data;
+    (*head_ref) = (*head_ref)->next;
+    (*head_ref)->prev = nullptr;
+    delete temp;
+    return x;
+}
+
 int main(void)
 {
     Node *new_node = new Node(8);
@@ -140,6 +153,10 @@ int main(void)
     display(head);
 
     insertAnywhere(&head, 5, 45);
+    cout << endl;
+    display(head);
+
+    deleteHead(&head);
     cout << endl;
     display(head);
     return 0;
