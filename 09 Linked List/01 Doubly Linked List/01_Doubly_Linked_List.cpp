@@ -26,6 +26,15 @@ void display(Node *head_ref)
     }
 }
 
+void recursiveDisplay(Node *node)
+{
+    if (node)
+    {
+        cout << node->data << " ";
+        recursiveDisplay(node->next);
+    }
+}
+
 int countNodes(Node *node)
 {
     int count = 0;
@@ -57,11 +66,11 @@ int main(void)
 {
     Node *new_node = new Node(8);
     Node *head = new_node;
-    // display(head);
-    cout << countNodes(head);
+    recursiveDisplay(head);
+    // cout << countNodes(head);
 
     insertAtHead(&head, 5);
-    cout << endl << countNodes(head);
-    // display(head);
+    cout << endl;
+    recursiveDisplay(head);
     return 0;
 }
