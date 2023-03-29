@@ -125,6 +125,25 @@ int deleteHead(Node **head_ref)
     return x;
 }
 
+int deleteEnd(Node **head_ref)
+{
+    Node *current = *head_ref;
+    Node *temp = nullptr;
+    int x = -1;
+
+    if (*head_ref == nullptr)
+        return x;
+
+    while (current->next)
+    {
+        current = current->next;
+    }
+    x = current->data;
+    current->prev->next = nullptr;
+    delete current;
+    return x;
+}
+
 int main(void)
 {
     Node *new_node = new Node(8);
@@ -156,7 +175,7 @@ int main(void)
     cout << endl;
     display(head);
 
-    deleteHead(&head);
+    deleteEnd(&head);
     cout << endl;
     display(head);
     return 0;
