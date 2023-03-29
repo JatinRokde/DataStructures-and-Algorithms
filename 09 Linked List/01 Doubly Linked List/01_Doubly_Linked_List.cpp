@@ -144,6 +144,42 @@ int deleteEnd(Node **head_ref)
     return x;
 }
 
+int deleteAnywhere(Node **head_ref, int index)
+{
+    Node *current = *head_ref;
+    Node *temp = nullptr;
+    int x = -1;
+
+    int count = countNodes(*head_ref);
+
+    if (index < 1 or index > (count + 1))
+        return x;
+
+    if (index == 1)
+    {
+        deleteHead(&(*head_ref));
+        return x;
+    }
+
+    if (index == (count + 1))
+    {
+        deleteEnd(&*head_ref);
+        return x;
+    }
+
+    for (int i = 1; i < (index - 1); i++)
+    {
+        current = current->next;
+    }
+    temp = current->next;
+    x = temp->data;
+
+    current->next = temp->next;
+    temp->next->prev = current;
+
+    return x;
+}
+
 int main(void)
 {
     Node *new_node = new Node(8);
@@ -175,7 +211,7 @@ int main(void)
     cout << endl;
     display(head);
 
-    deleteEnd(&head);
+    deleteAnywhere(&head, 3);
     cout << endl;
     display(head);
     return 0;
