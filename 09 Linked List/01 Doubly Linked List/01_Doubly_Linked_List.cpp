@@ -26,6 +26,17 @@ void display(Node *head_ref)
     }
 }
 
+int countNodes(Node *node)
+{
+    int count = 0;
+    while (node)
+    {
+        count++;
+        node = node->next;
+    }
+    return count;
+}
+
 void insertAtHead(Node **head_ref, int value)
 {
     Node *new_node = new Node(value);
@@ -46,10 +57,11 @@ int main(void)
 {
     Node *new_node = new Node(8);
     Node *head = new_node;
-    display(head);
+    // display(head);
+    cout << countNodes(head);
 
     insertAtHead(&head, 5);
-    cout << endl;
-    display(head);
+    cout << endl << countNodes(head);
+    // display(head);
     return 0;
 }
