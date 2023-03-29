@@ -61,7 +61,10 @@ void insertAtEnd(Node **head_ref, int value)
     Node *current = *head_ref;
 
     if (current == nullptr)
+    {
         *head_ref = new_node;
+        return;
+    }
 
     while (current->next)
         current = current->next;
