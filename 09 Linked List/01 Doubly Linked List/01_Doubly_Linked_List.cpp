@@ -62,6 +62,24 @@ void insertAtHead(Node **head_ref, int value)
     *head_ref = new_node;
 }
 
+void insertAtEnd(Node **head_ref, int value)
+{
+    Node *new_node = new Node(value);
+    Node *current = *head_ref;
+
+    if (current == nullptr)
+    {
+        *head_ref = new_node;
+        return;
+    }
+
+    while (current->next)
+        current = current->next;
+
+    current->next = new_node;
+    new_node->prev = current;
+}
+
 int main(void)
 {
     Node *new_node = new Node(8);
@@ -72,5 +90,9 @@ int main(void)
     insertAtHead(&head, 5);
     cout << endl;
     recursiveDisplay(head);
+
+    insertAtEnd(&head, 12);
+    cout << endl;
+    display(head);
     return 0;
 }
