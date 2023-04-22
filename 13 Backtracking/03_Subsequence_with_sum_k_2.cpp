@@ -3,14 +3,16 @@
 // Structure of the Code
 
 // func()
-//     if (condition statisfies)
+//     if (baseCondition statisfies)
 //         return true;
 //     else 
 //         return false;
 
+//      (make rest of the function calls)
 //     if (func() == true);
 //         return true;    
 
+//     (if none of the function call satisfies the condition, return false)
 //     return false
 
 
