@@ -3,29 +3,63 @@
 // Approach - Divide the array until each element acts as a separate array, Merge the array
 
 #include <iostream>
+#include <vector>
 using namespace std;
 
-void merge(int arr[], int n, int low, int mid, int high)
+void merge(vector<int> &arr, int l, int m, int r)
 {
+    int i = l;
+    int j = m + 1;
+    vector<int> temp;
+    while (i <= m && j <= r)
+    {
+        if (arr[i] <= arr[j])
+        {
+            temp.push_back(arr[i]);
+            i++;
+        }
+        else
+        {
+            temp.push_back(arr[j]);
+            j++;
+        }
+    }
+    while (i <= m)
+    {
+        temp.push_back(arr[i]);
+        i++;
+    }
+    while (j <= r)
+    {
+        temp.push_back(arr[j]);
+        j++;
+    }
+    for (int k = l; k <= r; k++)
+    {
+        arr[k] = temp[k - l];
+    }
 }
 
-void mergeSort(int arr[], int n, int low, int high)
+void mergeSort(vector<int> &arr, int l, int r)
 {
-    if (low >= high)
-        return;
-
-    int mid = (low + high) / 2;
-
-    mergeSort(arr, n, low, mid);
-    mergeSort(arr, n, mid + 1, high);
-    merge(arr, n, low, mid, high);
+    if (l < r)
+    {
+        int m = (l + r) / 2;
+        mergeSort(arr, l, m);
+        mergeSort(arr, m + 1, r);
+        merge(arr, l, m, r);
+    }
 }
 
-int main(void)
+int main()
 {
-    int arr[] = {2, 1, 5, 3, 9};
-    int n = sizeof(arr) / sizeof(arr[0]);
-
-    mergeSort(arr, n, 0, n - 1);
+    vector<int> arr = {38, 27, 43, 3, 9, 82, 10};
+    int n = arr.size();
+    mergeSort(arr, 0, n - 1);
+    for (int i = 0; i < n; i++)
+    {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
     return 0;
 }
