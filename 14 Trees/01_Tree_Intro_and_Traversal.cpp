@@ -5,6 +5,7 @@
 // DFS - Inorder, Preorder and Postorder
 
 #include <iostream>
+#include <vector>
 using namespace std;
 
 struct Node
@@ -21,36 +22,36 @@ struct Node
 };
 
 // Preorder - root, left, right
-void preorder(Node *current)
+void preOrder(Node *current, vector<int> &preOrderTrav)
 {
     if (current == nullptr)
         return;
 
-    cout << current->data << " ";
-    preorder(current->left);
-    preorder(current->right);
+    preOrderTrav.push_back(current->data);
+    preOrder(current->left, preOrderTrav);
+    preOrder(current->right, preOrderTrav);
 }
 
 // Inorder - left, root, right
-void inorder(Node *current)
+void inOrder(Node *current, vector<int> &inOrderTrav)
 {
     if (current == nullptr)
         return;
 
-    inorder(current->left);
-    cout << current->data << " ";
-    inorder(current->right);
+    inOrder(current->left, inOrderTrav);
+    inOrderTrav.push_back(current->data);
+    inOrder(current->right, inOrderTrav);
 }
 
 // Postorder - left, right, root
-void postorder(Node *current)
+void postOrder(Node *current, vector<int> &postOrderTrav)
 {
     if (current == nullptr)
         return;
 
-    postorder(current->left);
-    postorder(current->right);
-    cout << current->data << " ";
+    postOrder(current->left, postOrderTrav);
+    postOrder(current->right, postOrderTrav);
+    postOrderTrav.push_back(current->data);
 }
 
 int main(void)
@@ -66,11 +67,29 @@ int main(void)
     root->right->right->left = new Node(9);
     root->right->right->right = new Node(10);
 
-    preorder(root);
+    vector<int> preOrderTrav;
+    preOrder(root, preOrderTrav);
+    for (auto it : preOrderTrav)
+    {
+        cout << it << " ";
+    }
+
     cout << endl;
-    inorder(root);
+
+    vector<int> inOrderTrav; 
+    inOrder(root, inOrderTrav);
+    for (auto it : inOrderTrav)
+    {
+        cout << it << " ";
+    }
     cout << endl;
-    postorder(root);
+    
+    vector<int> postOrderTrav;
+    postOrder(root, postOrderTrav);
+    for(auto it : postOrderTrav)
+    {
+        cout << it << " ";
+    }
 
     return 0;
 }
