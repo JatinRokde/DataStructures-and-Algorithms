@@ -26,7 +26,7 @@ vector<vector<int>> levelOrder(Node *root)
     queue<Node *> q;
 
     q.push(root);
-    while(!q.empty())
+    while (!q.empty())
     {
         int size = q.size();
         vector<int> level;
@@ -36,10 +36,10 @@ vector<vector<int>> levelOrder(Node *root)
             Node *node = q.front();
             q.pop();
 
-            if(node->left != nullptr)
-            q.push(node->left);
-            if(node->right != nullptr)
-            q.push(node->right);
+            if (node->left != nullptr)
+                q.push(node->left);
+            if (node->right != nullptr)
+                q.push(node->right);
             level.push_back(node->data);
         }
         ans.push_back(level);
@@ -62,7 +62,7 @@ int main(void)
 
     vector<vector<int>> ans;
     ans = levelOrder(root);
-    for(int i = 0; i < ans.size(); i++)
+    for (int i = 0; i < ans.size(); i++)
     {
         for (int j = 0; j < ans[i].size(); j++)
         {
