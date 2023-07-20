@@ -32,6 +32,21 @@ int fibonacci(int n)
 // Time Complexity = O(n)
 // Space Complexity = O(n) (No extra recursion stack space is used)
 
+// DP - Tabulation with Space Optimisation
+int fibonacci_(int n)
+{
+    int prev2 = 0, prev = 1;
+    int curr = 0;
+
+    for (int i = 2; i <= n; i++)
+    {
+        curr = prev + prev2;
+        prev2 = prev;
+        prev = curr;
+    }
+    return curr;
+}
+
 int main(void)
 {
     int n;
