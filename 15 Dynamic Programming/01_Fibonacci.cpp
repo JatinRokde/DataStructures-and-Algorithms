@@ -46,6 +46,8 @@ int fibonacci_(int n)
     }
     return curr;
 }
+// Time Complexity = O(n)
+// Space Complexity = O(1)
 
 int main(void)
 {
