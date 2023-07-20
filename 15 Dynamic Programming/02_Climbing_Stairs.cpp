@@ -38,6 +38,21 @@ int stairsCount(int n, vector<int> &dp)
 // Time Complexity = O(n)
 // Space Complexity = O(n) + O(n)
 
+int stairsCount(int n)
+{
+    int prev2 = 1, prev = 1;
+    int curr = 0;
+    for (int i = 2; i <= n; i++)
+    {
+        curr = prev2 + prev;
+        prev2 = prev;
+        prev = curr;
+    }
+    return curr;
+}
+// Time Complexity = O(n)
+// Space Complexity = O(1)
+
 int main(void)
 {
     int n = 3;
