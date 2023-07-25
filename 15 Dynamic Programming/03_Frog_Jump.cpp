@@ -22,6 +22,7 @@ int frogJump(int n, vector<int> &heights, vector<int> &dp)
 // Time Complexity = O(n)
 // Space Complexity = O(n) + O(n)
 
+// DP - Tabulation - Bottom up approach
 int frogJump(int n, vector<int> &heights)
 {
     vector<int> dp(n, -1);
@@ -45,12 +46,38 @@ int frogJump(int n, vector<int> &heights)
 // Time Complexity = O(n)
 // Space Complexity = O(n)
 
+// DP - Tabulation with Space Optimisation
+int frogJump_(int n, vector<int> &heights)
+{
+    int prev2 = 0, prev = 0;
+
+    for (int i = 1; i < n; i++)
+    {
+        int oneJump = prev + abs(heights[i] - heights[i - 1]);
+
+        int twoJump = INT_MAX;
+        if (i > 1)
+        {
+            twoJump = prev2 + abs(heights[i] - heights[i - 2]);
+        }
+        int curr = min(oneJump, twoJump);
+        prev2 = prev;
+        prev = curr;
+    }
+    // for the exit condition, i = n
+    // prev = n - 1
+    return prev;
+}
+// Time Complexity = O(n)
+// Space Complexity = O(1)
+
 int main(void)
 {
     vector<int> heights{10, 20, 30, 10};
     int n = heights.size();
     // vector<int> dp(n, -1);
     // cout << frogJump(n - 1, heights, dp);
+    // cout << frogJump(n, heights);
     cout << frogJump(n, heights);
 
     return 0;
